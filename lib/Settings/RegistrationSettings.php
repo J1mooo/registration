@@ -91,6 +91,12 @@ class RegistrationSettings implements ISettings {
 			'additional_hint',
 			$this->config->getAppValue($this->appName, 'additional_hint')
 		);
+
+		$this->initialState->provideInitialState(
+			'login_button_hide',
+			$this->config->getAppValue($this->appName, 'login_button_visible', 'yes') === 'yes'
+		);
+
 		$this->initialState->provideInitialState(
 			'email_verification_hint',
 			$this->config->getAppValue($this->appName, 'email_verification_hint')
