@@ -14,6 +14,15 @@
 
 			<p><em>{{ t('registration', 'Enabling "administrator approval" will prevent registrations from mobile and desktop clients to complete as the credentials cannot be verified by the client until the user was enabled.') }}</em></p>
 
+			<NcCheckboxRadioSwitch :checked.sync="loginButtonVisible"
+				type="switch"
+				:disabled="loading"
+				@update:checked="saveData">
+				{{ t('registration', 'Show registration button on the login page') }}
+			</NcCheckboxRadioSwitch>
+
+			<p><em>{{ t('registration', 'Enabling, "Show registration button" will ensure the registration button is not displayed on the login page. Instead new users will have to be provided with the registration link, eg. https://nextcloud.domain.tld/index.php/apps/registration/, in order to register.') }}</em></p>
+
 			<div>
 				<div class="margin-top">
 					<label for="registered_user_group">
@@ -199,6 +208,7 @@ export default {
 			showPhone: false,
 			enforcePhone: false,
 			additionalHint: '',
+			loginButtonVisible: true,
 			emailVerificationHint: '',
 		}
 	},
@@ -235,6 +245,7 @@ export default {
 		this.showPhone = loadState('registration', 'show_phone')
 		this.enforcePhone = loadState('registration', 'enforce_phone')
 		this.additionalHint = loadState('registration', 'additional_hint')
+		this.loginButtonVisible = loadState('registration', 'login_button_visible')
 		this.emailVerificationHint = loadState('registration', 'email_verification_hint')
 
 		this.searchGroup('')
@@ -266,6 +277,7 @@ export default {
 					show_phone: this.showPhone,
 					enforce_phone: this.enforcePhone,
 					additional_hint: this.additionalHint,
+					login_button_visible: this.loginButtonVisible,
 					email_verification_hint: this.emailVerificationHint,
 				})
 
