@@ -63,6 +63,7 @@ class SettingsController extends Controller {
 		?bool $enforce_phone,
 		?bool $domains_is_blocklist,
 		?bool $show_domains,
+		?bool $login_button_visible,
 		?bool $disable_email_verification): DataResponse {
 		// handle domains
 		if (($allowed_domains === '') || ($allowed_domains === null)) {
@@ -108,6 +109,7 @@ class SettingsController extends Controller {
 		$this->config->setAppValue($this->appName, 'enforce_phone', $enforce_phone ? 'yes' : 'no');
 		$this->config->setAppValue($this->appName, 'domains_is_blocklist', $domains_is_blocklist ? 'yes' : 'no');
 		$this->config->setAppValue($this->appName, 'show_domains', $show_domains ? 'yes' : 'no');
+		$this->config->setAppValue($this->appName, 'login_button_visible', $login_button_visible ? 'yes' : 'no');
 		$this->config->setAppValue($this->appName, 'disable_email_verification', $disable_email_verification ? 'yes' : 'no');
 
 		if ($registered_user_group === null) {
